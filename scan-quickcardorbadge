@@ -1,0 +1,74 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title> iALearn Quickcard or Badge Login </title> 
+      <meta-charset utf-8>
+            <style> 
+                  h1 {font-family: cursive } 
+                 h1 {color: white}
+h1{  font-family: sans-serif} 
+h1 {background-color : Black} 
+h2 (font-family : cursive } 
+h3 {font - family: cursive }
+            </style> 
+            </head> 
+
+      <h1> iAlearn Education Quickcard or Badge Login </h1>    
+      <h2> Hold your badge or quickcard up to the camera if you have not yet. </h2> 
+        <script>
+
+    var clickerButton = document.getElementById("clicker");
+
+    var onButtonClick = function() {
+        clickerButton.textContent = "If you are a member, login  to the iALearn Member site. ";
+    };
+    
+    clickerButton.addEventListener("click", onButtonClick);
+
+
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/7.21.1/firebase-analytics.js"></script>
+
+<script src="/__/firebase/init.js"></script>  
+<h1> QuickCard Scanner: 
+                                  <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+<script type="text/javascript">
+    var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5, mirror: false });
+    scanner.addListener('scan',function(content){
+        alert(content);
+        //window.location.href=content;
+    });
+    Instascan.Camera.getCameras().then(function (cameras){
+        if(cameras.length>0){
+            scanner.start(cameras[0]);
+            $('[name="options"]').on('change',function(){
+                if($(this).val()==1){
+                    if(cameras[0]!=""){
+                        scanner.start(cameras[0]);
+                    }else{
+                        alert('No Front camera found!');
+                    }
+                }else if($(this).val()==2){
+                    if(cameras[1]!=""){
+                        scanner.start(cameras[1]);
+                    }else{
+                        alert('No Back camera found!');
+                    }
+                }
+            });
+        }else{
+            console.error('There are no cameras found.');
+            alert('There are no cameras found..');
+        }
+    }).catch(function(e){
+        console.error(e);
+        alert(e);
+    });
+</script><div class="btn-group btn-group-toggle mb-5" data-toggle="buttons">
+  <label class="btn btn-primary active">
+    <input type="radio" name="options" value="1" autocomplete="off" checked> Front Camera
+  </label>
+  <label class="btn btn-secondary">
+    <input type="radio" name="options" value="2" autocomplete="off"> Other Camera or Back Camera
+  </label>
+     
